@@ -1,0 +1,17 @@
+.wrapper {
+    background: rgb(27, 27, 27);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 100%;
+    padding: 100px 0;
+    transition: all 0.5s ease;
+    /* background-image: linear-gradient( #04002a 0%, #000c5c 35%, #cc3000 100%); */
+    background-image: linear-gradient( #07013e 0%, #000c5c 25%, #000000 100%);
+
+    
+}
+a{
+    color: rgb(218, 218, 218);
+}
