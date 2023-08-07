@@ -1,0 +1,15 @@
+.comments-container {
+    display: block;
+    border-radius: 25px;
+    background: #eeeeeed7;
+    padding: 15px;
+  }
+
+.comment {
+    display: block;
+    border-radius: 25px;
+    background: #c0c0c0d7;
+    padding: 15px;
+    display: flex;
+    justify-content: space-evenly;
+}
