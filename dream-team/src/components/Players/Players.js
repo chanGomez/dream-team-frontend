@@ -27,10 +27,10 @@ function Players() {
   return (
     <div className="container">
       <ul className="list-group list-group-flush">
-        {players.map(({ id, name }) => {
+        {players.map(({ id, player_name }) => {
           return (
             <li key={id} className="list-group-item">
-              <p>{name}</p>
+              <p>{player_name}</p>
             </li>
           );
         })}
