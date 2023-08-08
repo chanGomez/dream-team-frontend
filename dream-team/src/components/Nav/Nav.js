@@ -6,16 +6,16 @@ function Nav() {
   return (
     <div className="wrapper">
       <div className="sidebar">
-        <nav class="nav flex-column">
-          <a class="nav-link" href="#">
+        <nav className="nav flex-column">
+          <a className="nav-link" href="#">
             {" "}
             <Link to="/">Home</Link>
           </a>
-          <a class="nav-link" href="#">
+          <a className="nav-link" href="#">
             {" "}
             <Link to="/teams">Teams</Link>
           </a>
-          <a class="nav-link" href="#">
+          <a className="nav-link" href="#">
             {" "}
             <Link to="/create-team">New Team</Link>
           </a>

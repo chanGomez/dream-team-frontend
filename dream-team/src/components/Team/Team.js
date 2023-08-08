@@ -7,7 +7,7 @@ import {
   faTrashCan,
   faPenToSquare,
 } from "@fortawesome/free-regular-svg-icons";
-import "./Team.css"
+import "./Team.css";
 
 import Comments from "../Comments/Comments";
 import Players from "../Players/Players";
@@ -50,7 +50,7 @@ function Team() {
       {team && (
         <div>
           <span className="flex">
-          <h1> {team.name} </h1> 
+            <h1> {team.name} </h1>
             {team.is_favorite ? (
               <div className="star">
                 <FontAwesomeIcon icon={faStarHalfStroke} />
@@ -60,7 +60,6 @@ function Team() {
             )}
           </span>
 
-
           <Players />
           <FontAwesomeIcon
             icon={faArrowAltCircleLeft}
@@ -69,7 +68,7 @@ function Team() {
           <FontAwesomeIcon icon={faTrashCan} onClick={() => deleteTeam()} />
           <Link to={`/teams/${id}/edit`}>
             {" "}
-            <FontAwesomeIcon icon={faPenToSquare} />
+            <FontAwesomeIcon icon={faPenToSquare} style={{ fontSize: "45px" }} />
           </Link>
         </div>
       )}
