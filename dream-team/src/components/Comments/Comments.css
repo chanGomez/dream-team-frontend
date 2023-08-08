@@ -3,13 +3,48 @@
     border-radius: 25px;
     background: #eeeeeed7;
     padding: 15px;
+    
   }
 
 .comment {
+  margin: 5px;
     display: block;
     border-radius: 25px;
     background: #c0c0c0d7;
     padding: 15px;
     display: flex;
     justify-content: space-evenly;
+    width: 100%;
+}
+.edit{
+  display: block;
+  border-radius: 25px;
+  background: #c0c0c0d7;
+  padding: 15px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.Comment-inner{
+  display: flex;
+  justify-content: center;
+
+}
+
+.edit-button{
+  padding-top: 25px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.comment-heading{
+  display: flex;
+  justify-content: left;
+  padding-left: 20px;
+}
+
+.comment-heading-comment{
+  padding-top: 15px;
+  display: flex;
+  justify-content: left;
+  padding-left: 20px;
 }

@@ -86,7 +86,7 @@ async function getAllTeams() {
   
   async function deleteTeamCommentAPI(id) {
     try {
-      let result = await Axios.delete(`/teams/${id}/comment/${id}`);
+      let result = await Axios.delete(`/teams/${id}/comments/${id}`);
   
       return result;
     } catch (e) {

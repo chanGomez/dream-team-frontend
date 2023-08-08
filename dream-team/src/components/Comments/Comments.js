@@ -88,15 +88,15 @@ async function handleDelete(id) {
 return(
   <section className="container">
     <div className=" comments-container">
-    <CommentForm fromParentReviewsHandleSubmit={handleAdd}>
-    <h3>Add a New Comment</h3>
-  </CommentForm>
-
+    <h5 className="comment-heading">Add a New Comment</h5>
+    <CommentForm fromParentCommentsHandleSubmit={handleAdd}>
+      </CommentForm>
+    <h5 className="comment-heading-comment">Comments</h5>
   {comments.map((item) => {
     return (
       <CommentsContext.Provider
         value={{
-          fromParentReviewsHandleSubmit: handleEdit,
+          fromParentCommentsHandleSubmit: handleEdit,
           comment: item,
           handleDelete: handleDelete,
           viewEditToggleForm: viewEditToggleForm,
