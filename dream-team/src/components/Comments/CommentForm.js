@@ -6,7 +6,7 @@ function CommentForm(props) {
   let { id } = useParams();
 
   const { commentDetails } = props;
-
+  
   const [comment, setComment] = useState({
     commenter: "",
     content: "",

@@ -53,7 +53,10 @@ function Team() {
             <h1> {team.name} </h1>
             {team.is_favorite ? (
               <div className="star">
-                <FontAwesomeIcon icon={faStarHalfStroke} />
+                <FontAwesomeIcon
+                  icon={faStarHalfStroke}
+                  style={{ fontSize: "21px" }}
+                />
               </div>
             ) : (
               ""
@@ -61,15 +64,27 @@ function Team() {
           </span>
 
           <Players />
+          <span className="button-group">
           <FontAwesomeIcon
             icon={faArrowAltCircleLeft}
             onClick={() => navigate("/teams")}
+            style={{ fontSize: "25px" }}
           />
-          <FontAwesomeIcon icon={faTrashCan} onClick={() => deleteTeam()} />
-          <Link to={`/teams/${id}/edit`}>
+          <FontAwesomeIcon
+            icon={faTrashCan}
+            onClick={() => deleteTeam()}
+            style={{ fontSize: "25px" }}
+          />
+          <Link to={`/teams/${id}/edit`}
+          className="link">
             {" "}
-            <FontAwesomeIcon icon={faPenToSquare} style={{ fontSize: "45px" }} />
+            <FontAwesomeIcon
+              icon={faPenToSquare}
+              style={{ fontSize: "25px" }}
+            />
           </Link>
+
+          </span>
         </div>
       )}
 

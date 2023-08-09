@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Player from "./Player";
+import "./Player.css"
 
 import { getTeamPlayerAPI, getTeamPlayerByIdAPI } from "../Api/API";
 
@@ -25,11 +26,11 @@ function Players() {
   }
 
   return (
-    <div className="container">
-      <select name="players" >{players.map(({id, player_name})=>{
+    <div className="player-container">
+      {/* <select name="players" >{players.map(({id, player_name})=>{
         return(<option value={player_name}>{player_name}</option>)
-      })}</select>
-      {/* <ul className="list-group list-group-flush">
+      })}</select> */}
+      <ul className="list-group list-group-flush">
         {players.map(({ id, player_name }) => {
           return (
             <li key={id} className="list-group-item">
@@ -37,7 +38,7 @@ function Players() {
             </li>
           );
         })}
-      </ul> */}
+      </ul>
     </div>
   );
 }

@@ -95,9 +95,21 @@ async function getAllTeams() {
   }
 
   //PLAYERS
+
+  async function getallPlayersAPI() {
+    try {
+      
+      let result = await Axios.get(`/players`);
+  
+      return result;
+    } catch (e) {
+      return e;
+    }
+  }
   async function getTeamPlayerAPI(id) {
     try {
-      let result = await Axios.get(`/teams/${id}/players`);
+        // localhost:3006/teams/1/players/all-players-in-team
+      let result = await Axios.get(`/teams/${id}/players/all-players-in-team`);
   
       return result;
     } catch (e) {
@@ -116,6 +128,7 @@ async function getAllTeams() {
   }
 
 
+
   export {
     getAllTeams,
     getTeamById,
@@ -128,4 +141,5 @@ async function getAllTeams() {
     deleteTeamCommentAPI,
     getTeamPlayerAPI,
     getTeamPlayerByIdAPI,
+    getallPlayersAPI
   };

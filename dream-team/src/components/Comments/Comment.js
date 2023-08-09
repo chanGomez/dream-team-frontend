@@ -18,30 +18,32 @@ function Comment() {
     setViewEditToggleForm(!viewEditToggleForm);
   }
   return (
-    
     <div className="Comment">
       <div className="Comment-inner">
-     
-      {viewEditToggleForm ? (
-        <CommentForm
-        fromParentCommentsHandleSubmit={fromParentCommentsHandleSubmit}
-          commentDetails={comment}
-          toggleView={toggleView}
+        {viewEditToggleForm ? (
+          <CommentForm
+            fromParentCommentsHandleSubmit={fromParentCommentsHandleSubmit}
+            commentDetails={comment}
+            toggleView={toggleView}
+          />
+        ) : (
+          <div className="comment">
+            <span>{comment.commenter}</span>
+            <span>{comment.content}</span>
+            <button
+              className="btn btn-danger"
+              onClick={() => handleDelete(comment.id)}
+            >
+              Delete
+            </button>
+          </div>
+        )}
+        <FontAwesomeIcon
+          style={{ fontSize: "25px" }}
+          icon={faPenToSquare}
+          onClick={toggleView}
+          className="edit-button"
         />
-      ) : (
-        <div className="comment">
-          <span>{comment.commenter}</span>
-          <span>{comment.content}</span>
-          <button
-            className="btn btn-danger"
-            onClick={() => handleDelete(comment.id)}
-          >
-            Delete
-          </button>
-        </div>
-      )}
-       <FontAwesomeIcon icon={faPenToSquare} onClick={toggleView} className="edit-button"/>
-
       </div>
     </div>
   );

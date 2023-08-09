@@ -7,18 +7,12 @@ function Nav() {
     <div className="wrapper">
       <div className="sidebar">
         <nav className="nav flex-column">
-          <a className="nav-link" href="#">
-            {" "}
-            <Link to="/">Home</Link>
-          </a>
-          <a className="nav-link" href="#">
-            {" "}
-            <Link to="/teams">Teams</Link>
-          </a>
-          <a className="nav-link" href="#">
-            {" "}
-            <Link to="/create-team">New Team</Link>
-          </a>
+
+            <Link className="nav-link" to="/">Home</Link>
+
+            <Link className="nav-link" to="/teams">Teams</Link>
+
+            <Link className="nav-link" to="/create-team">New Team</Link>
         </nav>
       </div>
     </div>

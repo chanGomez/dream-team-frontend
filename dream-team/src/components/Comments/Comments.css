@@ -21,8 +21,6 @@
   border-radius: 25px;
   background: #c0c0c0d7;
   padding: 15px;
-  display: flex;
-  justify-content: space-evenly;
 }
 .Comment-inner{
   display: flex;
