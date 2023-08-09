@@ -12,7 +12,11 @@ function NewTeam() {
     is_favorite: false,
   });
 
-  const [playersList, setplayersList] = useState([]);
+  const [pgList, setPgList] = useState([]);
+  const [sgList, setSgList] = useState([]);
+  const [sfList, setSfList] = useState([]);
+  const [pfList, setPfList] = useState([]);
+  const [cList, setCList] = useState([]);
 
   const [seletedPlayer, setSelectedPlayer] = useState("");
 
@@ -49,7 +53,18 @@ function NewTeam() {
     try {
       let result = await getallPlayersAPI();
 
-      setplayersList(result.data);
+      let pointGuards = result.data.filter((item) => item.position === "PG");
+      let shootingGuards = result.data.filter((item) => item.position === "SG");
+      let smallForward = result.data.filter((item) => item.position === "SF");
+      let powerForward = result.data.filter((item) => item.position === "PF");
+      let center = result.data.filter((item) => item.position === "C");
+
+      setPgList(pointGuards);
+      setSgList(shootingGuards);
+      setSfList(smallForward)
+      setPfList(powerForward)
+      setCList(center)
+      
     } catch (error) {
       console.log(error);
     }
@@ -100,7 +115,8 @@ function NewTeam() {
         <p>player 1</p>
         <div className="mb-3">
           <select name="players">
-            {playersList.map(({ id, player_name }) => {
+            <option value="">Please select a Player</option>
+            {pgList.map(({ id, player_name }) => {
               return (
                 <option key={id} value={player_name}>
                   {player_name}
@@ -112,7 +128,8 @@ function NewTeam() {
         <p>player 2</p>
         <div className="mb-3">
           <select name="players">
-            {playersList.map(({ id, player_name }) => {
+            <option value="">Please select a Player</option>
+            {sgList.map(({ id, player_name }) => {
               return (
                 <option key={id} value={player_name}>
                   {player_name}
@@ -124,7 +141,8 @@ function NewTeam() {
         <p>player 3</p>
         <div className="mb-3">
           <select name="players">
-            {playersList.map(({ id, player_name }) => {
+            <option value="">Please select a Player</option>
+            {sfList.map(({ id, player_name }) => {
               return (
                 <option key={id} value={player_name}>
                   {player_name}
@@ -136,7 +154,8 @@ function NewTeam() {
         <p>player 4</p>
         <div className="mb-3">
           <select name="players">
-            {playersList.map(({ id, player_name }) => {
+            <option value="">Please select a Player</option>
+            {pfList.map(({ id, player_name }) => {
               return (
                 <option key={id} value={player_name}>
                   {player_name}
@@ -148,7 +167,8 @@ function NewTeam() {
         <p>player 5</p>
         <div className="mb-3">
           <select name="players">
-            {playersList.map(({ id, player_name }) => {
+            <option value="">Please select a Player</option>
+            {cList.map(({ id, player_name }) => {
               return (
                 <option key={id} value={player_name}>
                   {player_name}

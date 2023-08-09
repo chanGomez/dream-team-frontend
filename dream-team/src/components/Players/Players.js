@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Player from "./Player";
-import "./Player.css"
+import "./Player.css";
 
 import { getTeamPlayerAPI, getTeamPlayerByIdAPI } from "../Api/API";
 
@@ -31,10 +31,11 @@ function Players() {
         return(<option value={player_name}>{player_name}</option>)
       })}</select> */}
       <ul className="list-group list-group-flush">
-        {players.map(({ id, player_name }) => {
+        {players.slice(0, 5).map(({ id, player_name, position, accolades }) => {
           return (
             <li key={id} className="list-group-item">
-              <p>{player_name}</p>
+              <p>{player_name}{" "}{position}</p>
+              <p>{accolades}</p>
             </li>
           );
         })}
