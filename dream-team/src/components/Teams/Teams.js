@@ -24,6 +24,7 @@ function Teams() {
   function showData() {
     return (
       <ul className="list-group list-group-flush">
+        
         {teamsData.map(({ id, name }) => {
           return (
             <li key={id} className="list-group-item">

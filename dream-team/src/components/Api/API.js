@@ -127,6 +127,20 @@ async function getAllTeams() {
     }
   }
 
+  //FANTASY
+  //create
+
+  async function createPlayersInTeam(formData) {
+    try {
+      let result = await Axios.post(`/fantasy`, formData);
+  
+      return result;
+    } catch (e) {
+      return e;
+    }
+  }
+
+
 
 
   export {
@@ -141,5 +155,6 @@ async function getAllTeams() {
     deleteTeamCommentAPI,
     getTeamPlayerAPI,
     getTeamPlayerByIdAPI,
-    getallPlayersAPI
+    getallPlayersAPI,
+    createPlayersInTeam
   };
