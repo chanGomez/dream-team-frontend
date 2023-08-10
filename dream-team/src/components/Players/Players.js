@@ -32,9 +32,9 @@ function Players() {
         return(<option value={player_name}>{player_name}</option>)
       })}</select> */}
       <ul className="list-group list-group-flush">
-        {players.map(({id, player_name}) => {
+        {players.map(({ player_name }) => {
           return (
-            <li key={id} className="list-group-item">
+            <li key={player_name} className="list-group-item">
               {player_name}
             </li>
           );
