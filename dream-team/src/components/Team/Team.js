@@ -65,6 +65,7 @@ function Team() {
           </span>
 
           <Players />
+          
           <span className="button-group">
           <FontAwesomeIcon
             icon={faArrowAltCircleLeft}
