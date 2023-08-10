@@ -45,6 +45,7 @@ function Team() {
       console.log(error);
     }
   };
+ 
   return (
     <div>
       <div className="container">

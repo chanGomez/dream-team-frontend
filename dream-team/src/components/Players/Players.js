@@ -18,7 +18,6 @@ function Players() {
   async function fetch() {
     try {
       let result = await getTeamPlayerAPI(id);
-      console.log(result.data);
 
       setPlayers(result.data);
     } catch (error) {

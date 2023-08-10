@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowAltCircleLeft,
-} from "@fortawesome/free-regular-svg-icons";
+import { faArrowAltCircleLeft } from "@fortawesome/free-regular-svg-icons";
 import {
   getTeamById,
   updateTeamById,
@@ -22,69 +20,75 @@ function EditTeam() {
   const [pfList, setPfList] = useState([]);
   const [cList, setCList] = useState([]);
 
-
-
   const [team, setTeam] = useState({
+    id: 0,
     name: "",
     is_favorite: false,
+    "players-sg": 0,
+    "players-pg": 0,
+    "players-sf": 0,
+    "players-pf": 0,
+    "players-c": 0,
   });
 
-  const [seletedPlayer, setSelectedPlayer] = useState([]);
-
-  //inistall team info before changes 
+  const [selectedPlayer, setSelectedPlayer] = useState([]);
+  const [teamMembers, setTeamMembers] = useState(false);
+  //inistall team info before changes
   useEffect(() => {
     const fetchTeam = async () => {
       try {
         const response = await getTeamById(id);
+        const responsePlayers = await getTeamPlayerAPI(id);
+        let players = responsePlayers.data;
+        let pg = players.filter((item) => item.position === "PG");
+        let sg = players.filter((item) => item.position === "SG");
+        let sf = players.filter((item) => item.position === "SF");
+        let pf = players.filter((item) => item.position === "PF");
+        let c = players.filter((player) => player.position === "C");
 
-        setTeam(response.data);
+        setTeam({
+          ...response.data,
+          "players-sg": sg[0].player_id,
+          "players-pg": pg[0].player_id,
+          "players-sf": sf[0].player_id,
+          "players-pf": pf[0].player_id,
+          "players-c": c[0].player_id,
+        });
       } catch (error) {
         navigate("/404");
       }
     };
 
     fetchTeam();
-  }, []);
-
-  useEffect(() => {
+    getAllplayers();
     const fetchPlayerInTeam = async () => {
       try {
         const response = await getTeamPlayerAPI(id);
-
-        console.log(response.data);
 
         setSelectedPlayer(response.data);
       } catch (error) {
         navigate("/404");
       }
     };
-
-    fetchPlayerInTeam();
-  }, []);
-
-
-  //fetch players in team for the select menu
-
-  useEffect(() => {
-    fetch();
-  }, [id, API]);
+    //fetchPlayerInTeam();
+    // fetch();
+  }, [id]);
+  let pg = selectedPlayer.filter((item) => item.position === "PG").player_id;
+  let sg = selectedPlayer.filter((item) => item.position === "SG").player_id;
+  let sf = selectedPlayer.filter((item) => item.position === "SF").player_id;
+  let pf = selectedPlayer.filter((item) => item.position === "PF").player_id;
+  let c = selectedPlayer.filter((item) => item.position === "C").player_id;
 
   async function fetch() {
     try {
       let result = await getTeamPlayerAPI(id);
-      console.log(result.data);
+      // console.log(result.data);
 
       setSelectedPlayer(result.data);
     } catch (error) {
       console.log(error);
     }
   }
-
-  //get players in select menu
-  useEffect(() => {
-    getAllplayers();
-  }, [API]);
-
   async function getAllplayers() {
     try {
       let result = await getallPlayersAPI();
@@ -100,7 +104,6 @@ function EditTeam() {
       setSfList(smallForward);
       setPfList(powerForward);
       setCList(center);
-      
     } catch (error) {
       console.log(error);
     }
@@ -110,11 +113,6 @@ function EditTeam() {
   function handleOnchange(id, value) {
     setTeam({
       ...team,
-      [id]: value,
-    });
-
-    setSelectedPlayer({
-      ...seletedPlayer,
       [id]: value,
     });
   }
@@ -143,7 +141,6 @@ function EditTeam() {
       console.log(e);
     }
   }
-
   return (
     <div className="container">
       <h4> Edit Team</h4>
@@ -178,19 +175,16 @@ function EditTeam() {
 
         <p>Point Guard</p>
         <div className="mb-3">
-          <select name="players">
-            <option
-              required
-              name="name"
-              id="player_name"
-              onChange={(e) => handleOnchange(e.target.id, e.target.value)}
-              value={seletedPlayer.player}
-            >
-              please select
-            </option>
+          <select
+            name="players-pg"
+            required
+            id="players-pg"
+            onChange={(e) => handleOnchange(e.target.id, e.target.value)}
+            value={pg}
+          >
             {pgList.map(({ id, player_name }) => {
               return (
-                <option key={id} value={player_name}>
+                <option key={id} value={id}>
                   {player_name}
                 </option>
               );
@@ -199,19 +193,16 @@ function EditTeam() {
         </div>
         <p>Shooting Guard</p>
         <div className="mb-3">
-          <select name="players">
-            <option
-              value=""
-              required
-              name="name"
-              id="players"
-              onChange={(e) => handleOnchange(e.target.id, e.target.value)}
-            >
-              Please select a Player
-            </option>
+          <select
+            name="players-sg"
+            required
+            id="players-sg"
+            value={sg}
+            onChange={(e) => handleOnchange(e.target.id, e.target.value)}
+          >
             {sgList.map(({ id, player_name }) => {
               return (
-                <option key={id} value={player_name}>
+                <option key={id} value={id}>
                   {player_name}
                 </option>
               );
@@ -220,19 +211,16 @@ function EditTeam() {
         </div>
         <p>Small Forward</p>
         <div className="mb-3">
-          <select name="players">
-            <option
-              value=""
-              required
-              name="name"
-              id="players"
-              onChange={(e) => handleOnchange(e.target.id, e.target.value)}
-            >
-              Please select a Player
-            </option>
+          <select
+            name="players-sf"
+            required
+            id="players-sf"
+            value={sf}
+            onChange={(e) => handleOnchange(e.target.id, e.target.value)}
+          >
             {sfList.map(({ id, player_name }) => {
               return (
-                <option key={id} value={player_name}>
+                <option key={id} value={id}>
                   {player_name}
                 </option>
               );
@@ -241,19 +229,16 @@ function EditTeam() {
         </div>
         <p>Power Forward</p>
         <div className="mb-3">
-          <select name="players">
-            <option
-              value=""
-              required
-              name="name"
-              id="players"
-              onChange={(e) => handleOnchange(e.target.id, e.target.value)}
-            >
-              Please select a Player
-            </option>
+          <select
+            name="players-pf"
+            required
+            id="players-pf"
+            value={pf}
+            onChange={(e) => handleOnchange(e.target.id, e.target.value)}
+          >
             {pfList.map(({ id, player_name }) => {
               return (
-                <option key={id} value={player_name}>
+                <option key={id} value={id}>
                   {player_name}
                 </option>
               );
@@ -262,19 +247,16 @@ function EditTeam() {
         </div>
         <p>Center</p>
         <div className="mb-3">
-          <select name="players">
-            <option
-              value=""
-              required
-              name="name"
-              id="players"
-              onChange={(e) => handleOnchange(e.target.id, e.target.value)}
-            >
-              Please select a Player
-            </option>
+          <select
+            name="players-c"
+            value={c}
+            required
+            id="players-c"
+            onChange={(e) => handleOnchange(e.target.id, e.target.value)}
+          >
             {cList.map(({ id, player_name }) => {
               return (
-                <option key={id} value={player_name}>
+                <option key={id} value={id}>
                   {player_name}
                 </option>
               );
@@ -286,13 +268,12 @@ function EditTeam() {
       </form>
 
       <span>
-      <FontAwesomeIcon
-            icon={faArrowAltCircleLeft}
-            onClick={() => navigate("/teams")}
-            style={{ fontSize: "25px" }}
-          />
+        <FontAwesomeIcon
+          icon={faArrowAltCircleLeft}
+          onClick={() => navigate("/teams")}
+          style={{ fontSize: "25px" }}
+        />
       </span>
-
     </div>
   );
 }
