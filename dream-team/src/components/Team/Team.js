@@ -47,6 +47,7 @@ function Team() {
   };
   return (
     <div>
+      <div className="container">
       {team && (
         <div>
           <span className="flex">
@@ -87,6 +88,8 @@ function Team() {
           </span>
         </div>
       )}
+
+      </div>
 
       <br />
       <h3> Trash Talk</h3>

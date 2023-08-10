@@ -99,7 +99,7 @@ async function getAllTeams() {
   async function getallPlayersAPI() {
     try {
       
-      let result = await Axios.get(`/players`);
+      let result = await Axios.get(`/players/all-players-list`);
   
       return result;
     } catch (e) {
