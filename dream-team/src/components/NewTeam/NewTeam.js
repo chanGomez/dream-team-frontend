@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { createTeam, getallPlayersAPI } from "../Api/API";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowAltCircleLeft,
+} from "@fortawesome/free-regular-svg-icons";
 import "./NewTeam.css";
 
 function NewTeam() {
@@ -180,7 +184,16 @@ function NewTeam() {
 
         <button>Submit</button>
       </form>
+
+      <span>
+      <FontAwesomeIcon
+            icon={faArrowAltCircleLeft}
+            onClick={() => navigate("/teams")}
+            style={{ fontSize: "25px" }}
+          />
+      </span>
     </div>
+    
   );
 }
 

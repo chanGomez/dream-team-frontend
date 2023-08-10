@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import Player from "./Player";
 import "./Player.css";
 
-import { getTeamPlayerAPI, getTeamPlayerByIdAPI } from "../Api/API";
+import { getTeamPlayerAPI } from "../Api/API";
 
 const API = process.env.REACT_APP_API_URL;
 function Players() {
@@ -18,6 +18,7 @@ function Players() {
   async function fetch() {
     try {
       let result = await getTeamPlayerAPI(id);
+      console.log(result.data);
 
       setPlayers(result.data);
     } catch (error) {
@@ -31,15 +32,31 @@ function Players() {
         return(<option value={player_name}>{player_name}</option>)
       })}</select> */}
       <ul className="list-group list-group-flush">
-        {players.slice(0, 5).map(({ id, player_name, position, accolades }) => {
+        {players.map(({id, player_name}) => {
           return (
             <li key={id} className="list-group-item">
-              <p>{player_name}{" "}{position}</p>
-              <p>{accolades}</p>
+              {player_name}
             </li>
           );
         })}
       </ul>
+      {/* <ul className="list-group list-group-flush">
+            <li className="list-group-item">
+              {players[0]}
+            </li>
+            <li className="list-group-item">
+              {players[1]}
+            </li>
+            <li className="list-group-item">
+              {players[2]}
+            </li>
+            <li className="list-group-item">
+              {players[3]}
+            </li>
+            <li className="list-group-item">
+              {players[4]}
+            </li>
+      </ul> */}
     </div>
   );
 }

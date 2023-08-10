@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowAltCircleLeft,
+} from "@fortawesome/free-regular-svg-icons";
 import {
   getTeamById,
   updateTeamById,
@@ -18,11 +22,16 @@ function EditTeam() {
   const [pfList, setPfList] = useState([]);
   const [cList, setCList] = useState([]);
 
+
+
   const [team, setTeam] = useState({
     name: "",
     is_favorite: false,
   });
 
+  const [seletedPlayer, setSelectedPlayer] = useState([]);
+
+  //inistall team info before changes 
   useEffect(() => {
     const fetchTeam = async () => {
       try {
@@ -37,7 +46,39 @@ function EditTeam() {
     fetchTeam();
   }, []);
 
+  useEffect(() => {
+    const fetchPlayerInTeam = async () => {
+      try {
+        const response = await getTeamPlayerAPI(id);
 
+        console.log(response.data);
+
+        setSelectedPlayer(response.data);
+      } catch (error) {
+        navigate("/404");
+      }
+    };
+
+    fetchPlayerInTeam();
+  }, []);
+
+
+  //fetch players in team for the select menu
+
+  useEffect(() => {
+    fetch();
+  }, [id, API]);
+
+  async function fetch() {
+    try {
+      let result = await getTeamPlayerAPI(id);
+      console.log(result.data);
+
+      setSelectedPlayer(result.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   //get players in select menu
   useEffect(() => {
@@ -59,23 +100,30 @@ function EditTeam() {
       setSfList(smallForward);
       setPfList(powerForward);
       setCList(center);
+      
     } catch (error) {
       console.log(error);
     }
   }
-  //handle on change 
 
-    
+  //handle on change
   function handleOnchange(id, value) {
     setTeam({
       ...team,
       [id]: value,
     });
-    // setSelectedPlayer({
-    //   ...seletedPlayer,
-    //   [id]: value,
-    // });
+
+    setSelectedPlayer({
+      ...seletedPlayer,
+      [id]: value,
+    });
   }
+  const handleCheckboxChange = (e) => {
+    setTeam({
+      ...team,
+      is_favorite: !team.is_favorite,
+    });
+  };
 
   //handle submit
   const updateTeam = async (id) => {
@@ -116,32 +164,30 @@ function EditTeam() {
           <label className="form-label">Favorite</label>
           <input
             className="form-control"
-            required
             type="checkbox"
             name="is_favorite"
             id="is_favorite"
-            onChange={(e) => handleOnchange(e.target.id, e.target.checked)}
-            value={team.is_favorite}
+            onChange={handleCheckboxChange}
+            checked={team.is_favorite}
           />
         </div>
 
+        {/* ///////////////////////////////PLAYERS */}
+
         <h3>Players</h3>
-        {/* <div className="mb-3">
-        <label className="form-label">player 1</label>
-        <input
-          className="form-control"
-          required
-          type="select"
-          name="is_favorite"
-          id="player"
-          onChange={(e) => handleOnchange(e.target.id, e.target.checked)}
-          value={playersList}
-        />
-      </div> */}
-        <p>player 1</p>
+
+        <p>Point Guard</p>
         <div className="mb-3">
           <select name="players">
-            <option value="">Please select a Player</option>
+            <option
+              required
+              name="name"
+              id="player_name"
+              onChange={(e) => handleOnchange(e.target.id, e.target.value)}
+              value={seletedPlayer.player}
+            >
+              please select
+            </option>
             {pgList.map(({ id, player_name }) => {
               return (
                 <option key={id} value={player_name}>
@@ -151,10 +197,18 @@ function EditTeam() {
             })}
           </select>
         </div>
-        <p>player 2</p>
+        <p>Shooting Guard</p>
         <div className="mb-3">
           <select name="players">
-            <option value="">Please select a Player</option>
+            <option
+              value=""
+              required
+              name="name"
+              id="players"
+              onChange={(e) => handleOnchange(e.target.id, e.target.value)}
+            >
+              Please select a Player
+            </option>
             {sgList.map(({ id, player_name }) => {
               return (
                 <option key={id} value={player_name}>
@@ -164,10 +218,18 @@ function EditTeam() {
             })}
           </select>
         </div>
-        <p>player 3</p>
+        <p>Small Forward</p>
         <div className="mb-3">
           <select name="players">
-            <option value="">Please select a Player</option>
+            <option
+              value=""
+              required
+              name="name"
+              id="players"
+              onChange={(e) => handleOnchange(e.target.id, e.target.value)}
+            >
+              Please select a Player
+            </option>
             {sfList.map(({ id, player_name }) => {
               return (
                 <option key={id} value={player_name}>
@@ -177,10 +239,18 @@ function EditTeam() {
             })}
           </select>
         </div>
-        <p>player 4</p>
+        <p>Power Forward</p>
         <div className="mb-3">
           <select name="players">
-            <option value="">Please select a Player</option>
+            <option
+              value=""
+              required
+              name="name"
+              id="players"
+              onChange={(e) => handleOnchange(e.target.id, e.target.value)}
+            >
+              Please select a Player
+            </option>
             {pfList.map(({ id, player_name }) => {
               return (
                 <option key={id} value={player_name}>
@@ -190,10 +260,18 @@ function EditTeam() {
             })}
           </select>
         </div>
-        <p>player 5</p>
+        <p>Center</p>
         <div className="mb-3">
           <select name="players">
-            <option value="">Please select a Player</option>
+            <option
+              value=""
+              required
+              name="name"
+              id="players"
+              onChange={(e) => handleOnchange(e.target.id, e.target.value)}
+            >
+              Please select a Player
+            </option>
             {cList.map(({ id, player_name }) => {
               return (
                 <option key={id} value={player_name}>
@@ -206,6 +284,15 @@ function EditTeam() {
 
         <button>Submit</button>
       </form>
+
+      <span>
+      <FontAwesomeIcon
+            icon={faArrowAltCircleLeft}
+            onClick={() => navigate("/teams")}
+            style={{ fontSize: "25px" }}
+          />
+      </span>
+
     </div>
   );
 }
