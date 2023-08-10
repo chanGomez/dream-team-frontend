@@ -18,7 +18,7 @@ function Players() {
   async function fetch() {
     try {
       let result = await getTeamPlayerAPI(id);
-
+      console.log(result.data);
       setPlayers(result.data);
     } catch (error) {
       console.log(error);
@@ -31,10 +31,12 @@ function Players() {
         return(<option value={player_name}>{player_name}</option>)
       })}</select> */}
       <ul className="list-group list-group-flush">
-        {players.slice(0, 5).map(({ id, player_name, position, accolades }) => {
+        {players.map(({ id, player_name, position, accolades }) => {
           return (
             <li key={id} className="list-group-item">
-              <p>{player_name}{" "}{position}</p>
+              <p>
+                {player_name} {position}
+              </p>
               <p>{accolades}</p>
             </li>
           );

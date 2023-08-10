@@ -116,7 +116,6 @@ function EditTeam() {
           <label className="form-label">Favorite</label>
           <input
             className="form-control"
-            required
             type="checkbox"
             name="is_favorite"
             id="is_favorite"
