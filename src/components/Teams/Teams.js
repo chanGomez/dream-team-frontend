@@ -10,7 +10,7 @@ function Teams() {
   async function fetchTeamsdata() {
     try {
       let result = await getAllTeams();
-    
+      console.log(result.data);
       setTeamsData(result.data);
     } catch (error) {
       console.log(error);
@@ -24,7 +24,6 @@ function Teams() {
   function showData() {
     return (
       <ul className="list-group list-group-flush">
-        
         {teamsData.map(({ id, name }) => {
           return (
             <li key={id} className="list-group-item">
