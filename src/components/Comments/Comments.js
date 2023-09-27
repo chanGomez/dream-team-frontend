@@ -14,7 +14,7 @@ import {
 
 import { CommentsContext } from "../Context/Context";
 
-const API = process.env.REACT_APP_API_URL;
+// const API = process.env.REACT_APP_API_URL;
 
 function Comments() {
   const [comments, setComments] = useState([]);
@@ -25,7 +25,7 @@ function Comments() {
 
   useEffect(() => {
     fetchTeamComment();
-  }, [id, API]);
+  }, [id]);
 
   async function fetchTeamComment() {
     try {
