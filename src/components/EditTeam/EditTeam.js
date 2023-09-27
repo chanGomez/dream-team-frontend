@@ -12,7 +12,6 @@ import {
 function EditTeam() {
   const navigate = useNavigate();
   const { id } = useParams();
-  const API = process.env.REACT_APP_API_URL;
 
   const [pgList, setPgList] = useState([]);
   const [sgList, setSgList] = useState([]);
@@ -32,7 +31,6 @@ function EditTeam() {
   });
 
   const [selectedPlayer, setSelectedPlayer] = useState([]);
-  const [teamMembers, setTeamMembers] = useState(false);
   //inistall team info before changes
   useEffect(() => {
     const fetchTeam = async () => {
@@ -61,15 +59,15 @@ function EditTeam() {
 
     fetchTeam();
     getAllplayers();
-    const fetchPlayerInTeam = async () => {
-      try {
-        const response = await getTeamPlayerAPI(id);
+    // const fetchPlayerInTeam = async () => {
+    //   try {
+    //     const response = await getTeamPlayerAPI(id);
 
-        setSelectedPlayer(response.data);
-      } catch (error) {
-        navigate("/404");
-      }
-    };
+    //     setSelectedPlayer(response.data);
+    //   } catch (error) {
+    //     navigate("/404");
+    //   }
+    // };
     //fetchPlayerInTeam();
     // fetch();
   }, [id]);
@@ -79,16 +77,16 @@ function EditTeam() {
   let pf = selectedPlayer.filter((item) => item.position === "PF").player_id;
   let c = selectedPlayer.filter((item) => item.position === "C").player_id;
 
-  async function fetch() {
-    try {
-      let result = await getTeamPlayerAPI(id);
-      // console.log(result.data);
+  // async function fetch() {
+  //   try {
+  //     let result = await getTeamPlayerAPI(id);
+  //     // console.log(result.data);
 
-      setSelectedPlayer(result.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  //     setSelectedPlayer(result.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
   async function getAllplayers() {
     try {
       let result = await getallPlayersAPI();

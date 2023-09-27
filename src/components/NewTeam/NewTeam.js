@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { createTeam, getallPlayersAPI, createPlayersInTeam } from "../Api/API";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowAltCircleLeft } from "@fortawesome/free-regular-svg-icons";
@@ -9,7 +9,7 @@ function NewTeam() {
   const API = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
 
-  const [seletedPlayer, setSelectedPlayer] = useState("");
+  // const [seletedPlayer, setSelectedPlayer] = useState("");
 
   const [team, setTeam] = useState({
     team_id: 0,

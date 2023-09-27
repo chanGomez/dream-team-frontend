@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Player from "./Player";
+// import Player from "./Player";
 import "./Player.css";
 
 import { getTeamPlayerAPI } from "../Api/API";

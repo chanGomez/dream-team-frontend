@@ -30,6 +30,7 @@ function Comments() {
   async function fetchTeamComment() {
     try {
       let result = await getTeamCommentAPI(id);
+      console.log(result);
 
       setComments(result.data);
     } catch (error) {
