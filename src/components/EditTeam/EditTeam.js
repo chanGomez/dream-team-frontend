@@ -31,7 +31,7 @@ function EditTeam() {
     "players-c": 0,
   });
 
-  const [selectedPlayer, setSelectedPlayer] = useState([]);
+  const [selectedPlayer] = useState([]);
   // const [teamMembers, setTeamMembers] = useState(false);
   //inistall team info before changes
   useEffect(() => {
