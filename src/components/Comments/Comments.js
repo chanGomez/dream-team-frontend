@@ -25,6 +25,7 @@ function Comments() {
 
   useEffect(() => {
     fetchTeamComment();
+  // eslint-disable-next-line
   }, [id]);
 
   async function fetchTeamComment() {
