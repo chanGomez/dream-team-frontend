@@ -12,6 +12,7 @@ import {
 function EditTeam() {
   const navigate = useNavigate();
   const { id } = useParams();
+  // const API = process.env.REACT_APP_API_URL;
 
   const [pgList, setPgList] = useState([]);
   const [sgList, setSgList] = useState([]);
@@ -31,6 +32,7 @@ function EditTeam() {
   });
 
   const [selectedPlayer, setSelectedPlayer] = useState([]);
+  // const [teamMembers, setTeamMembers] = useState(false);
   //inistall team info before changes
   useEffect(() => {
     const fetchTeam = async () => {
@@ -59,6 +61,7 @@ function EditTeam() {
 
     fetchTeam();
     getAllplayers();
+    //-----------commented out because the function wasnt being called 
     // const fetchPlayerInTeam = async () => {
     //   try {
     //     const response = await getTeamPlayerAPI(id);
@@ -70,6 +73,7 @@ function EditTeam() {
     // };
     //fetchPlayerInTeam();
     // fetch();
+  // eslint-disable-next-line
   }, [id]);
   let pg = selectedPlayer.filter((item) => item.position === "PG").player_id;
   let sg = selectedPlayer.filter((item) => item.position === "SG").player_id;
@@ -77,6 +81,7 @@ function EditTeam() {
   let pf = selectedPlayer.filter((item) => item.position === "PF").player_id;
   let c = selectedPlayer.filter((item) => item.position === "C").player_id;
 
+    //-----------commented out because the function wasnt being called
   // async function fetch() {
   //   try {
   //     let result = await getTeamPlayerAPI(id);

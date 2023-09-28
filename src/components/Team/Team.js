@@ -22,6 +22,7 @@ function Team() {
 
   useEffect(() => {
     toFetchTeamById();
+  // eslint-disable-next-line
   }, []);
 
   async function toFetchTeamById() {

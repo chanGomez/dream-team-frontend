@@ -13,6 +13,7 @@ function Players() {
 
   useEffect(() => {
     fetch();
+  // eslint-disable-next-line
   }, [id, API]);
 
   async function fetch() {
